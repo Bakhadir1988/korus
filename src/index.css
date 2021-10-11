@@ -1,13 +1,281 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.accordion-block {
+  max-width: 616px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.accordion-item {
+  border: 1px solid #f3f4f8;
+  background-color: #f3f4f8;
+  border-radius: 20px;
+  padding-top: 18px;
+  padding-left: 31px;
+  margin-bottom: 14px;
+  padding-bottom: 18px;
+  position: relative;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.accordion-item.open {
+  border-color: #e2e3e7;
+}
+
+.accordion-item.not-active {
+  cursor: not-allowed;
+}
+
+.accordion-info {
+  height: 0;
+  visibility: hidden;
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  margin-left: 40px;
+  padding: 0;
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+}
+
+.accordion-info input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding-right: 31px;
+}
+
+.accordion-info input::placeholder {
+  color: #000;
+}
+
+.accordion-info input:focus {
+  outline: 0;
+}
+
+.accordion-item.open .accordion-info {
+  height: auto;
+  visibility: visible;
+  padding-top: 20px;
+  opacity: 1;
+  margin-top: 20px;
+  border-top: 1px solid #e2e3e7;
+  transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+}
+
+.accordion-header {
+  display: flex;
+  padding-right: 31px;
+  align-items: center;
+}
+
+.accordion-number {
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  display: flex;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  border: 2px solid #377e8b;
+  background-color: #fff;
+  color: #377e8b;
+  margin-right: 20px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}
+
+.accordion-number::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: calc(100% - 10px);
+  background-color: red;
+  top: 41px;
+  z-index: 1;
+}
+
+.uncritical-error-line .accordion-number::after {
+  background-color: #e9a24c;
+}
+
+.error-line .accordion-number::after {
+  background-color: #b02b36;
+}
+
+.accordion-number::after {
+  background-color: #d4d8df;
+}
+
+.accordion-item.complete .accordion-number::after {
+  background-color: #377e8b;
+}
+
+.accordion-item:last-child .accordion-number::after {
+  display: none;
+}
+
+.accordion-item.uncritical-error .accordion-number {
+  border-color: #e9a24c;
+  color: #e9a24c;
+}
+
+.accordion-item.error .accordion-number {
+  border-color: #b02b36;
+  color: #fff;
+  background-color: #b02b36;
+}
+
+.accordion-item.complete .accordion-number {
+  background-color: #377e8b;
+  color: #fff;
+}
+
+.accordion-item.not-active .accordion-number {
+  border-color: #d4d8df;
+  color: #d4d8df;
+}
+
+.accordion-title {
+  font-weight: 600;
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.accordion-step {
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+.accordion-item .accordion-step {
+  color: #a5a6a8;
+}
+
+.accordion-item.complete .accordion-step {
+  color: #7faaae;
+}
+
+.accordion-item.uncritical-error .accordion-step {
+  color: #e9a24c;
+}
+
+.accordion-item.error .accordion-step {
+  color: #b02b36;
+}
+
+.accordion-icon .fas {
+  font-size: 13px;
+}
+
+.accordion-item:not(.not-active) .accordion-icon {
+  cursor: pointer;
+}
+
+.accordion-item.open .accordion-icon .fas {
+  transition: transform .3s ease;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -webkit-transition: transform .3s ease;
+  -moz-transition: transform .3s ease;
+  -ms-transition: transform .3s ease;
+  -o-transition: transform .3s ease;
+}
+
+.accordion-item.open .accordion-icon .fa {
+  transform: rotate(180deg);
+}
+
+.accordion-block button:focus {
+  outline: none;
+}
+
+.accordion-block button {
+  margin-top: 40px;
+  border: 0;
+  padding: 15px 20px;
+  font-size: 16px;
+  background-color: #6ec6ff;
+  color: #fff;
+  cursor: pointer;
+  transition: all .4s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  -o-transition: all .4s ease;
+}
+
+.accordion-block button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0;
+  padding-top: 0;
+  border-radius: 100%;
+  background-color: rgba(236, 240, 241, .3);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+.accordion-block button:active:before {
+  width: 120%;
+  padding-top: 120%;
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+.accordion-block button:hover {
+  box-shadow: none;
+  background-color: #2196f3;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  -o-transition: all .4s ease;
 }
